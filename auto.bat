@@ -1,4 +1,3 @@
-29 lines (27 sloc)  580 Bytes
 @echo off
 echo ==============================
 echo [PROCESSING...] git add --all .
