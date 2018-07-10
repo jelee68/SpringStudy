@@ -9,11 +9,11 @@ public class MainClass {
 	public static void main(String[] args) {
 		
 		//XML파일을 이용한 방법
-		//String configLocation = "classpath:appicationCTX.xml";
+		//String configLocation = "classpath:applicationCTX.xml";
 		//AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 		
-		//JAVA를 이용한 방법
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		//JAVA파일을 이용한 방법
+		AnnotationConfigApplicationContext	ctx = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		
 		Family family = ctx.getBean("family", Family.class);
 		ctx.close();
