@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="student" class="com.wind.s07.Student" scope="singleton">	
+		<property name="name" value="오드리"></property>
+		<property name="age" value="28"></property>
+	</bean>
+
+	<bean id="act" class="com.wind.s07.Student" scope="prototype">	
+		<property name="name" value="엠마스톤"></property>
+		<property name="age" value="30"></property>
+	</bean>
+</beans>
