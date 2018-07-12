@@ -15,11 +15,21 @@ public class MainClass {
 		ConfigurableEnvironment env = ctx.getEnvironment();
 		MutablePropertySources propertySources = env.getPropertySources();
 		
+	
 		try {
 			propertySources.addLast(new ResourcePropertySource("classpath:admin.properties"));
 			System.out.println(env.getProperty("admin.id"));
 			System.out.println(env.getProperty("admin.pw"));
-		} catch(IOException e) { }
+		} catch(IOException e) { } 
+		
+		GenericXmlApplicationContext gCtx= (GenericXmlApplicationContext)ctx;
+		gCtx.load("applicationCTX.xml");
+		gCtx.refresh();
+		
+		AdminConnection adminConnection = gCtx.getBean("adminConnection", AdminConnection.class);
+		System.out.println("Admin ID: " + adminConnection.getAdminId());
+		System.out.println("Admin PW: " + adminConnection.getAdminPw());
+		
 	}
 
 }
