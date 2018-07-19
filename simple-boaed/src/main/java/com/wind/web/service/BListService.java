@@ -11,10 +11,9 @@ public class BListService implements BService {
 
 	@Override
 	public void execute(Model model) {
-
+		
 		BDao dao = new BDao();
-		ArrayList<BDto> dtos = dao.list();	
-		model.addAttribute("list",dtos);
+		ArrayList<BDto> dtos = dao.list();
+		model.addAttribute("list", dtos);
 	}
-
 }
