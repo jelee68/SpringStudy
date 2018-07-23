@@ -292,7 +292,7 @@ public class BDao {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			String query ="update mvc_board set "
+			String query ="update mvc_board "
 						 + "bHit = bHit + 1 where bId = ?";
 			
 			connection = dataSource.getConnection();
