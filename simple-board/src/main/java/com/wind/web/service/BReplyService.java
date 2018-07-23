@@ -20,12 +20,12 @@ public class BReplyService implements BService {
 		String bName = request.getParameter("bName");
 		String bTitle = request.getParameter("bTitle");
 		String bContent = request.getParameter("bContent");
-		String bGruop = request.getParameter("bGruop");
+		String bGroup = request.getParameter("bGroup");
 		String bStep = request.getParameter("bStep");
 		String bIndent = request.getParameter("bIndent");
 		
 		BDao dao= new BDao();
-		dao.reply(bId, bName, bTitle, bContent, bGruop, bStep, bIndent);			
+		dao.reply(bId, bName, bTitle, bContent, bGroup, bStep, bIndent);			
 	}
 
 }

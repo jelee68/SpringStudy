@@ -10,7 +10,7 @@ public class BDto {
 	String bContent;
 	Timestamp bDate;
 	int bHit;
-	int bGruop;
+	int bGroup;
 	int bStep;
 	int bIndent;
 	
@@ -26,7 +26,7 @@ public class BDto {
 		this.bContent = bContent;
 		this.bDate = bDate;
 		this.bHit = bHit;
-		this.bGruop = bGruop;
+		this.bGroup = bGroup;
 		this.bStep = bStep;
 		this.bIndent = bIndent;
 	}
@@ -38,8 +38,8 @@ public class BDto {
 	public Timestamp getbDate() { return bDate; }
 	public int getbHit() { return bHit; }
 
-	public int getbGruop() {
-		return bGruop;
+	public int getbGroup() {
+		return bGroup;
 	}
 
 	public int getbStep() {
@@ -74,8 +74,8 @@ public class BDto {
 		this.bHit = bHit;
 	}
 
-	public void setbGruop(int bGruop) {
-		this.bGruop = bGruop;
+	public void setbGroup(int bGroup) {
+		this.bGroup = bGroup;
 	}
 
 	public void setbStep(int bStep) {
@@ -85,6 +85,5 @@ public class BDto {
 	public void setbIndent(int bIndent) {
 		this.bIndent = bIndent;
 	}
-	
-	
+		
 }

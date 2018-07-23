@@ -13,7 +13,7 @@
 <form action = "reply" method="post">
 
 	<input type="hidden" name="bId" value="${reply_view.bId}">
-	<input type="hidden" name="bGruop" value="${reply_view.bGruop}">
+	<input type="hidden" name="bGroup" value="${reply_view.bGroup}">
 	<input type="hidden" name="bStep" value="${reply_view.bStep}">
 	<input type="hidden" name="bIndent" value="${reply_view.bIndent}">
 

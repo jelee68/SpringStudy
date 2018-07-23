@@ -72,7 +72,7 @@ public class BDao {
 	
 	public BDto contentView(String strID) {
 		
-		//upHit(strID);
+		upHit(strID);
 		
 		BDto dto = null;
 		
@@ -239,39 +239,90 @@ public class BDao {
 	}
 	
 	public void reply(String bId, String bName, String bTitle, 
-			String bContent, String bGruop, String bStep, String bIndent) {
-		//replyShape(BGroup, bStep);
+			String bContent, String bGroup, String bStep, String bIndent) {
+			
+			replyShape(bGroup, bStep);
+
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			
+			try {
+				String query ="insert into mvc_board ("
+					+ "bId, bName, bTitle, "
+					+ "bContent, bGroup, bStep, bIndent) values ("
+					+ "mvc_board_seq.nextval, ?, ?,"
+					+ "?, ?, ?, ?)";
+				
+				connection = dataSource.getConnection();
+				preparedStatement = connection.prepareStatement(query);
+				
+				preparedStatement.setString(1, bName);
+				preparedStatement.setString(2, bTitle);
+				preparedStatement.setString(3, bContent);
+				preparedStatement.setInt(4, Integer.parseInt(bGroup));
+				preparedStatement.setInt(5, Integer.parseInt(bStep)+1);
+				preparedStatement.setInt(6, Integer.parseInt(bIndent)+1);
+				
+				int rn = preparedStatement.executeUpdate();
+				
+			} catch (Exception e) { e.printStackTrace(); }
+			finally {
+				try {
+					if(preparedStatement != null) preparedStatement.close();
+					if(connection != null) connection.close();
+				} catch (Exception e2) { e2.printStackTrace(); }
+			}
+		}
+	
+	public void upHit(String bId) {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
+
 		try {
-					
-			String query = "insert into mvc_board(bId, bName, bTitle, "
-						 + "bContent, bGruop, bStep, bIndent) "
-						 + "values (mvc_board_seq.nextval, ?, ?, "
-						 + "?, ?, ?, ?)";
+			String query ="update mvc_board "
+						 + "bHit = bHit + 1 where bId = ?";
 			
 			connection = dataSource.getConnection();
 			preparedStatement = connection.prepareStatement(query);
 			
-			preparedStatement.setString(1, bName);
-			preparedStatement.setString(2, bTitle);
-			preparedStatement.setString(3, bContent);
-			preparedStatement.setInt(4,Integer.parseInt(bGruop));
-			preparedStatement.setInt(5,Integer.parseInt(bStep));
-			preparedStatement.setInt(6,Integer.parseInt(bIndent));
-	
+			preparedStatement.setInt(1,Integer.parseInt(bId));
+			
 			int rn = preparedStatement.executeUpdate();
 			
-		}catch(Exception e){e.printStackTrace();}
+		} catch (Exception e) { e.printStackTrace(); }
 		finally {
 			try {
 				if(preparedStatement != null) preparedStatement.close();
 				if(connection != null) connection.close();
-			} catch (Exception e2) { e2.printStackTrace();}
+			} catch (Exception e2) { e2.printStackTrace(); }
 		}
+		
 	}
 	
+	public void replyShape(String bGroup, String bStep) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			String query = "update mvc_board set bStep = bStep +1 "
+						 + "where bGroup = ? and bStep > ?";
+			
+			connection = dataSource.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setInt(1,Integer.parseInt(bGroup));
+			preparedStatement.setInt(2,Integer.parseInt(bStep));
+			
+			int rn = preparedStatement.executeUpdate();
+			
+		} catch (Exception e) { e.printStackTrace(); }
+		finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e2) { e2.printStackTrace(); }
+		}		
+	} 
 	
 }
