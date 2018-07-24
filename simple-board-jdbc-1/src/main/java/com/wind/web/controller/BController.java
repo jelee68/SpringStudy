@@ -2,6 +2,8 @@ package com.wind.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +17,20 @@ import com.wind.web.service.BReplyService;
 import com.wind.web.service.BReplyViewService;
 import com.wind.web.service.BService;
 import com.wind.web.service.BWriteService;
+import com.wind.web.util.Constant;
 
 @Controller
 public class BController {
 	
 	BService service = null;
+	private JdbcTemplate template;
+	
+	@Autowired
+	public void setTemplate(JdbcTemplate template) {
+		this.template = template;
+		Constant.template = this.template;
+	}
+	
 	
 	@RequestMapping("/list")
 	public String list(Model model) { 
@@ -76,7 +87,6 @@ public class BController {
 
 	@RequestMapping("/reply")
 	public String reply(HttpServletRequest request,Model model) {
-		System.out.println("/reply");		
 		model.addAttribute("request", request);
 		
 		service = new BReplyService();
@@ -87,7 +97,6 @@ public class BController {
 
 	@RequestMapping("/reply_view")
 	public String reply_view(HttpServletRequest request,Model model) {
-		System.out.println("/reply_view");					
 		model.addAttribute("request", request);
 		
 		service = new BReplyViewService();
