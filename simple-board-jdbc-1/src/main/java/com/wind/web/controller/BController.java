@@ -23,14 +23,14 @@ import com.wind.web.util.Constant;
 public class BController {
 	
 	BService service = null;
+	
 	private JdbcTemplate template;
 	
 	@Autowired
-	public void setTemplate(JdbcTemplate template) {
+	public void setTemplates(JdbcTemplate template) {
 		this.template = template;
 		Constant.template = this.template;
 	}
-	
 	
 	@RequestMapping("/list")
 	public String list(Model model) { 
